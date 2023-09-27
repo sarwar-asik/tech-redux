@@ -1,7 +1,8 @@
 ## RTK query
 
-#### src>redux>api>apiSlice :::::
+#### src>redux>api>apiSlice.ts :::::
 
+```ts
       import { IProduct } from "@/types/globalTypes"
       import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
@@ -18,9 +19,12 @@
 
     export const {useGetProductsQuery} = api
 
+```
+
 ### src > redux> products> productApi ( you can use it in endpoints of src>redux>api>apiSlice ) :::
 
-        import { api } from '@/redux/api/apiSlice';
+```ts
+  import { api } from '@/redux/api/apiSlice';
         import { IProduct } from '@/types/globalTypes';
 
                 const productApi = api.injectEndpoints({
@@ -54,19 +58,29 @@
             useGetCommentQuery,
         } = productApi;
 
+
+```
+
 ## important Info **\*** (in apiSlice )
 
-      tagTypes:['comments']  /// for refresh before end points///
+```ts
+   tagTypes:['comments']  /// for refresh before end points///
       providesTags:['comments']   /// for getting refresh data ///
        invalidatesTags:['comments']   /// refresh after post or update data ///
 
+```
 ### src>app.ts (get data) :::
 
-            const { data, isLoading, error } = useGetProductsQuery(undefined);
+```ts
+        const { data, isLoading, error } = useGetProductsQuery(undefined);
+
+```
 
 ### src>components>productReview (for post and get) ::::
 
-        const [postComment,{isLoading,isError,isSuccess}] = usePostCommentMutation()
+```ts
+
+ const [postComment,{isLoading,isError,isSuccess}] = usePostCommentMutation()
 
 
 
@@ -88,3 +102,5 @@
         setInputValue('');
 
         };
+
+``

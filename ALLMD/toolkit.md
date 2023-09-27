@@ -2,13 +2,18 @@
 
 #### install
 
-            npm install @reduxjs/toolkit react-redux
+```bash
+   npm install @reduxjs/toolkit react-redux
             npm i redux-logger
             npm i --save-dev @types/redux-logger
+```
 
 ## for counter >>>>
 
 ### src>redux>store.ts ::::
+
+```ts
+
 
         import { configureStore } from "@reduxjs/toolkit";
         import counterReducer from "./features/counter/counterSlice";
@@ -23,16 +28,22 @@
 
         export type AppDispatch = typeof store.dispatch
         export default store;
+```
 
 ### main.tsx ::::::
 
+```tsx
         <Provider store={store}>
             <RouterProvider router={routes} />
             </Provider>
+```
 
 ### src>redux>features>counter>counterSlice.ts ::::
 
-    import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+
+```ts
+  import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
         interface counterState{
         count:number
@@ -64,8 +75,10 @@
 
         export default counterSlice.reducer;
 
+```
 ### src>redux>hooks :::::
 
+```ts
         import { useDispatch, useSelector } from 'react-redux'
         import type { TypedUseSelectorHook } from 'react-redux'
         import type { RootState, AppDispatch } from './store'
@@ -74,8 +87,11 @@
         export const useAppDispatch: () => AppDispatch = useDispatch
         export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
+```
 
 ### src >App.tsx ::::
+
+```tsx
 
     import { RootState } from "./redux/store";
     import { decrement, increment,incrementByAmount } from "./redux/features/counter/counterSlice";
@@ -91,9 +107,14 @@
            Increment
         </button>
 
+```
 ## with middleware>>>>
 
 ### src>redux>middleware>logger.ts (curring function) :::
+
+
+```tsx
+
 
         import { Middleware } from "@reduxjs/toolkit";
 
@@ -104,8 +125,11 @@
 
         export default logger;
 
+
+```
 ###### src>redux>store.ts ::::
 
+```tsx
         import { configureStore } from "@reduxjs/toolkit";
         import counterReducer from "./features/counter/counterSlice";
         import logger from "./middleware/logger";
@@ -124,3 +148,5 @@
 
         export type AppDispatch = typeof store.dispatch;
         export default store;
+
+```
